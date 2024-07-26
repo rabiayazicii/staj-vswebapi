@@ -1,0 +1,153 @@
+﻿
+@model IEnumerable<stajproje.Model.NYO_SosyalYardimModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font: 16px Arial;
+        }
+
+        .autocomplete {
+            position: relative;
+            display: inline-block;
+        }
+
+        input {
+            border: 1px solid transparent;
+            background-color: #f1f1f1;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+            input[type=text] {
+                background-color: #f1f1f1;
+                width: 100%;
+            }
+
+            input[type=submit] {
+                background-color: DodgerBlue;
+                color: #fff;
+                cursor: pointer;
+            }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+        }
+
+        #odemeler {
+            cursor: pointer;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+    <p>@Html.ActionLink("Odeme Ekle", "Create", null, new { @class = "btn btn-primary" })</p>
+
+    <h2>NYO Sosyal Yardım Sorgula</h2>
+
+    @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+    {
+        <table>
+            @Html.RadioButton("searchby", "TCKIMLIKNO", true)
+            <b>TC Kimlik Numarası</b>
+            <br />
+            <br />
+            @Html.RadioButton("searchby", "ODEMENO")
+            <b>Ödeme Numarası</b>
+
+            <br />
+            <br />
+
+            @Html.TextBox("search", null, new { Class = "form control" })
+            <br />
+            <br />
+
+            <input type="submit" value="Sorgula" class="btn btn-success" />
+        </table>
+    }
+
+    <br /><br />
+
+    <p>Ödeme yapmak istediğiniz ödeme bilgisine çift tıklayınız </p>
+
+    <table id="paymentTable" class="table table-bordered table-hover table-responsive">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.ODEMENO)</th>
+            <th>@Html.DisplayNameFor(model => model.TCKIMLIKNO)</th>
+            <th>@Html.DisplayNameFor(model => model.MUSTERIAD)</th>
+            <th>@Html.DisplayNameFor(model => model.MUSTERISOYAD)</th>
+            <th>@Html.DisplayNameFor(model => model.ODEME_KD)</th>
+            <th>@Html.DisplayNameFor(model => model.ODEME_TTR)</th>
+            <th>@Html.DisplayNameFor(model => model.ODEME_TR)</th>
+            <th>@Html.DisplayNameFor(model => model.ODEME_ACK)</th>
+        </tr>
+
+        @foreach (var nyomodel in Model)
+        {
+            <tr id="odemeler" ondblclick="Odemeİşlemi('@nyomodel.TCKIMLIKNO', '@nyomodel.ODEMENO')">
+                <td>@nyomodel.ODEMENO</td>
+                <td>@nyomodel.TCKIMLIKNO</td>
+                <td>@nyomodel.MUSTERIAD</td>
+                <td>@nyomodel.MUSTERISOYAD</td>
+                <td>@nyomodel.ODEME_KD</td>
+                <td>@nyomodel.ODEME_TTR</td>
+                <td>@nyomodel.ODEME_TR</td>
+                <td>@nyomodel.ODEME_ACK</td>
+                <td>
+                    @Html.ActionLink("Düzenle", "Düzenle", new { odemeno = nyomodel.ODEMENO }, new { @class = "btn btn-primary" }) |
+                    @Html.ActionLink("Sil", "Sil", new { odemeno = nyomodel.ODEMENO }, new { onclick = "return confirm('Bu kaydı silmek istediğinize emin misiniz?');", @class = "btn btn-danger" })
+
+                </td>
+            </tr>
+        }
+    </table>
+
+    @section scripts
+    {
+        <script src="~/js/jquery-3.3.1.min.js"></script>
+        <script type="text/javascript">
+            function Odemeİşlemi(tckn, odemeno) {
+                if (confirm("Ödeme yapmak istediğinize emin misiniz?")) {
+                    $.ajax({
+                        type: "POST",
+                        url: '@Url.Action("OdemeYap", "Home")',
+                        data: { tckn: tckn, odemeno: odemeno },
+                        success: function(response) {
+                            if (response.success) {
+                                alert("Ödeme başarıyla yapıldı.");
+                                location.reload();
+                            } else {
+                                alert("Ödeme işlemi daha önceden yapılmış veya ödeme tarihi henüz gelmemiş.");
+                            }
+                        },
+                        error: function() {
+                            alert("Bir hata oluştu.");
+                        }
+                    });
+                }
+            }
+        </script>
+    }
+</body>
+</html>

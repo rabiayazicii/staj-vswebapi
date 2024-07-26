@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "Hash": "D043Zv1J4epLlpWWP2Uf6DqYY/mxxk+8op7mQY2LkEk=",
+  "Source": "stajproje",
+  "BasePath": "_content/stajproje",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "stajproje/wwwroot",
+      "Source": "stajproje",
+      "ContentRoot": "/Users/rabiayazici/Projects/stajproje/stajproje/wwwroot/",
+      "BasePath": "_content/stajproje",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "/Users/rabiayazici/Projects/stajproje/stajproje/wwwroot/Index.cshtml",
+      "SourceId": "stajproje",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/rabiayazici/Projects/stajproje/stajproje/wwwroot/",
+      "BasePath": "_content/stajproje",
+      "RelativePath": "Index.cshtml",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "wwwroot/Index.cshtml"
+    }
+  ]
+}
