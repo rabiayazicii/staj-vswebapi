@@ -1,0 +1,87 @@
+﻿
+@model IEnumerable<ConsumeWebAPI.Models.NYOViewModel>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font: 16px Arial;
+        }
+
+        .autocomplete {
+            position: relative;
+            display: inline-block;
+        }
+
+        input {
+            border: 1px solid transparent;
+            background-color: #f1f1f1;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+            input[type=text] {
+                background-color: #f1f1f1;
+                width: 100%;
+            }
+
+            input[type=submit] {
+                background-color: DodgerBlue;
+                color: #fff;
+                cursor: pointer;
+            }
+        }
+    </style>
+</head>
+
+
+<h2>TC Kimlik Numarası İle Sorgula</h2>
+
+
+<form autocomplete="off" action="Index" method="post">
+    <div class="autocomplete" style="width:300px;">
+        <input id="myInput" type="text" name="TC" placeholder="TC kimlik numarası">
+    </div>
+    <input type="submit" value="Sorgula">
+</form>
+
+
+<table class="table table-light">
+    <thread>
+        <th>@Html.DisplayNameFor(model => model.ODEMENO)</th>
+        <th>@Html.DisplayNameFor(model => model.TCKIMLIKNO)</th>
+        <th>@Html.DisplayNameFor(model => model.MUSTERIAD)</th>
+        <th>@Html.DisplayNameFor(model => model.MUSTERISOYAD)</th>
+        <th>@Html.DisplayNameFor(model => model.ODEME_KD)</th>
+        <th>@Html.DisplayNameFor(model => model.ODEME_TTR)</th>
+        <th>@Html.DisplayNameFor(model => model.ODEME_TR)</th>
+        <th>@Html.DisplayNameFor(model => model.ODEME_ACK)</th>
+
+    </thread>
+</table>
+<tbody>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItembox => item.ODEMENO)</td>
+            <td>@Html.DisplayFor(modelItembox => item.TCKIMLIKNO)</td>
+            <td>@Html.DisplayFor(modelItembox => item.MUSTERIAD)</td>
+            <td>@Html.DisplayFor(modelItembox => item.MUSTERISOYAD)</td>
+            <td>@Html.DisplayFor(modelItembox => item.ODEME_KD)</td>
+            <td>@Html.DisplayFor(modelItembox => item.ODEME_TTR)</td>
+            <td>@Html.DisplayFor(modelItembox => item.ODEME_TR)</td>
+            <td>@Html.DisplayFor(modelItembox => item.ODEME_ACK)</td>
+
+        </tr>
+    }
+
+
+</tbody>

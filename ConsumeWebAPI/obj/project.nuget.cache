@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "uJx30hcYsKO1ENKptqrSQFkZcr4O0Tz4O/h2rIM3ZWuki119sqwWL3gBURBw+vEQ6FI0+gf03nkwu4kZYjfF1A==",
+  "success": true,
+  "projectFilePath": "/Users/rabiayazici/Projects/stajproje/ConsumeWebAPI/ConsumeWebAPI.csproj",
+  "expectedPackageFiles": [
+    "/Users/rabiayazici/.nuget/packages/newtonsoft.json/11.0.1/newtonsoft.json.11.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}
